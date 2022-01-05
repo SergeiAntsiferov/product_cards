@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     // border: 1px solid red;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Source Sans Pro';
 }
 
 .main {
@@ -43,7 +43,6 @@
     max-width: 332px;
     height: 440px;
     padding: 24px;
-
     box-shadow: 0px 20px 30px 0px #0000000a;
     
     &__wrapper {
@@ -144,7 +143,7 @@
 
     background: #eee;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: 0.3s;
     font-weight: bold;
     font-size: 12px;
@@ -160,6 +159,97 @@
         }
     }
 }
+
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: calc(100% - 332px);
+}
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 332px;
+    height: 420px;
+    margin: 0 8px 16px 8px;
+
+    border-radius: 4px;
+    color: #3F3F3F;
+    box-shadow: 0px 20px 30px 0px #0000000a;
+    transition: 0.3s;
+    
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+        
+    }
+
+    &:hover .card__delete {
+        display: block;
+    }
+
+
+
+    &__delete {
+        position: absolute;
+        display: none;
+        right: -4%;
+        top: -4%;
+
+        &:hover {
+            animation: shaking ease-in-out 1s infinite;
+        }
+
+        @keyframes shaking {
+            0%, 50% {
+                transform: rotate(0deg);
+            }
+            10%, 30% {
+                transform: rotate(-10deg);
+            }
+            20%, 40% {
+                transform: rotate(10deg);
+            }
+            
+        }
+
+    }
+
+    &__image {
+        width: 100%;
+        height: 200px;
+    }
+
+    &__name {
+        padding: 16px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__description {
+        padding: 16px;
+        padding-top: 0;
+        font-weight: 400;
+    }
+
+    &__price {
+        padding: 16px;
+        padding-bottom: 24px;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/sourcesanspro.woff') format('woff');
+  }
 
 @media screen and (max-width: 768px) {
 
@@ -182,4 +272,10 @@
             }
         }
     }
+
+    .cards {
+        width: 100%;
+        padding-top: 16px;
+    }
 }
+
