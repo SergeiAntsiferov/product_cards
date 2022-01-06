@@ -1,19 +1,16 @@
 // import { products } from './products.js';
-import { productsLS } from './mapping.js'
+import { getProductLS, showCards } from './mapping.js'
 
 const inputName = document.getElementById('name');
 const inputDescription = document.getElementById('description');
 const inputLink = document.getElementById('link');
 const inputPrice = document.getElementById('price');
 const createButton = document.querySelector('.button');
-const deleteButton = document.querySelectorAll('.card__delete'); //array
-
 
 //Alerts
 const nameAlert = document.querySelector('.input-name-error');
 const linkAlert = document.querySelector('.input-link-error');
 const priceAlert = document.querySelector('.input-price-error');
-
 
 function buttonDisable () {
     createButton.classList.remove('button_enabled');
@@ -54,12 +51,12 @@ inputPrice.addEventListener('input', (e) => {
     }
 })
 
-// inputPrice.addEventListener('input', (e) => {
+inputPrice.addEventListener('input', (e) => {
     
-//   if ((e.target.value.trim()).length % 3 === 0) { 
-//     e.target.value += " ";
-//   }
-// })
+    const formated = String((e.target.value).replace(/ /g, '')).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
+    e.target.value = formated;
+
+})
 
 //Fields Validation
 window.addEventListener('input', () => {
@@ -74,42 +71,30 @@ window.addEventListener('input', () => {
 //Create new card
 createButton.addEventListener('click', (event) => {
     event.preventDefault();
+    const productsLS = getProductLS()
     const newCard = {
+        id: String(new Date().getTime()),
         image: inputLink.value,
         name: inputName.value,
         description: inputDescription.value,
         price: `${inputPrice.value} руб.`
     };
-    localStorage.setItem('products', JSON.stringify([newCard, ...productsLS,]))
-    window.location.reload();
+    localStorage.setItem('products', JSON.stringify([newCard, ...productsLS,]));
+    showCards();
     //clear fields
     inputLink.value = inputName.value = inputDescription.value = inputPrice.value = '';
     buttonDisable();
+    addELforDeleteButton();
 })
 
 
 //Delete card
-deleteButton.forEach( element => element.addEventListener('click', (e) => {
-    const parent = e.target.parentElement; //get target parent
-    const parentName = parent.querySelector('.card__name'); //get element with identifier
-    const name = parentName.innerHTML; //get identifier for find in the array
-    const result = productsLS.filter((product) => product.name !== name) 
-    localStorage.setItem('products', JSON.stringify([...result]))
-    window.location.reload();
-}))
-
-//sort increase 
-// function sortIncrease() {
-//     productsLS.sort((a, b) => {
-
-//         if (a.price > b.price) {
-//             return 1;
-//         }
-//         if (a.price < b.price) {
-//             return -1;
-//         }
-//         return 0;
-//     })
-//     localStorage.setItem('products', JSON.stringify([...productsLS]))
-//     window.location.reload();
-// }
+export function addELforDeleteButton() {
+    const deleteButton = document.querySelectorAll('.card__delete'); //array
+    deleteButton.forEach( element => element.addEventListener('click', (e) => {
+        const productsLS = getProductLS()
+        const result = productsLS.filter((product) => product.id !== e.target.id) 
+        localStorage.setItem('products', JSON.stringify([...result]))
+        showCards();
+    }))
+}
