@@ -1,5 +1,4 @@
 import { getProductLS, showCards } from './mapping.js'
-import { products } from './products.js'
 
 const select = document.getElementById('filter')
 
@@ -39,7 +38,7 @@ function sortDecrease() {
     showCards();
 }
 
-function sortByName() {
+export function sortByName() {
 
     const productsLS = getProductLS()
     productsLS.sort((a, b) => {
@@ -53,11 +52,6 @@ function sortByName() {
         return 0;
     })
     localStorage.setItem('products', JSON.stringify([...productsLS]))
-    showCards();
-}
-
-export function sortDefault() {
-    localStorage.setItem('products', JSON.stringify([...products]))
     showCards();
 }
 
@@ -75,7 +69,6 @@ select.addEventListener('change', (e) => {
             sortByName();
             break;
         default:
-            sortDefault();
+            sortByName();
     }
-
 })

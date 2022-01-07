@@ -1,6 +1,6 @@
 import { products } from './products.js';
 import { addELforDeleteButton } from './script.js';
-import { sortDefault } from './sorting.js';
+import { sortByName } from './sorting.js';
 
 
 export function getProductLS() {
@@ -9,10 +9,9 @@ export function getProductLS() {
 
 const cardList = document.querySelector('.cards')
 
-window.addEventListener('load', showCards(), addELforDeleteButton(), sortDefault())
+window.addEventListener('load', showCards(), addELforDeleteButton(), sortByName())
 
 function arrayMapping(array) {
-
     array.forEach( (product, index) => {
         const card = `<div class="card">
             <img class="card__delete" src="images/delete.png" alt="delete" id="${product.id}"/>
@@ -31,13 +30,13 @@ function arrayMapping(array) {
 
 export function showCards() {
     const productsLS = getProductLS()
-        if (productsLS) {
-            arrayMapping(productsLS);
-        } else {
-            arrayMapping(products);
-            localStorage.setItem('products', JSON.stringify(products));
-        }
+    if (productsLS) {
+        arrayMapping(productsLS);
+    } else {
+        arrayMapping(products);
+        localStorage.setItem('products', JSON.stringify(products));
     }
+}
 
 
 
