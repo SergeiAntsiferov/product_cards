@@ -1,5 +1,6 @@
 import { products } from './products.js';
 import { addELforDeleteButton } from './script.js';
+import { sortDefault } from './sorting.js';
 
 
 export function getProductLS() {
@@ -8,7 +9,7 @@ export function getProductLS() {
 
 const cardList = document.querySelector('.cards')
 
-window.addEventListener('load', showCards(), addELforDeleteButton())
+window.addEventListener('load', showCards(), addELforDeleteButton(), sortDefault())
 
 function arrayMapping(array) {
 
