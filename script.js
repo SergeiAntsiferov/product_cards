@@ -1,24 +1,12 @@
-// import { products } from './products.js';
 import { getProductLS, showCards } from './mapping.js'
-
-const inputName = document.getElementById('name');
-const inputDescription = document.getElementById('description');
-const inputLink = document.getElementById('link');
-const inputPrice = document.getElementById('price');
-const createButton = document.querySelector('.button');
 
 //Alerts
 const nameAlert = document.querySelector('.input-name-error');
 const linkAlert = document.querySelector('.input-link-error');
 const priceAlert = document.querySelector('.input-price-error');
 
-function buttonDisable () {
-    createButton.classList.remove('button_enabled');
-    createButton.disabled = true
-}
-
-
 //Name check
+const inputName = document.getElementById('name');
 inputName.addEventListener('input', (e) => { 
     if (e.target.value) {
         inputName.classList.remove('input-name_red');
@@ -30,6 +18,7 @@ inputName.addEventListener('input', (e) => {
 })
 
 //Link check
+const inputLink = document.getElementById('link');
 inputLink.addEventListener('input', (e) => { 
     if (e.target.value) {
         inputLink.classList.remove('input-link_red');
@@ -41,6 +30,7 @@ inputLink.addEventListener('input', (e) => {
 })
 
 //Price check
+const inputPrice = document.getElementById('price');
 inputPrice.addEventListener('input', (e) => { 
     if (e.target.value) {
         inputPrice.classList.remove('input-price_red');
@@ -51,29 +41,38 @@ inputPrice.addEventListener('input', (e) => {
     }
 })
 
+//Separate mask
 inputPrice.addEventListener('input', (e) => {
-    
     const formated = String((e.target.value).replace(/ /g, '')).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
     e.target.value = formated;
-
+    
 })
 
 //Fields Validation
-window.addEventListener('input', () => {
+const createButton = document.querySelector('.button');
+const form = document.querySelector('.form');
+form.addEventListener('input', () => {
     if (inputName.value && inputLink.value && inputPrice.value) {
         createButton.classList.add('button_enabled');
         createButton.disabled = false;
     } else {
-        buttonDisable()
+        createButtonDisable()
     }
 })
+
+//Disable create button
+function createButtonDisable() {
+    createButton.classList.remove('button_enabled');
+    createButton.disabled = true
+}
 
 //Create new card
 createButton.addEventListener('click', (event) => {
     event.preventDefault();
+    const inputDescription = document.getElementById('description');
     const productsLS = getProductLS()
     const newCard = {
-        id: String(new Date().getTime()),
+        id: String(new Date().getTime()), //get unique id
         image: inputLink.value,
         name: inputName.value,
         description: inputDescription.value,
@@ -81,20 +80,24 @@ createButton.addEventListener('click', (event) => {
     };
     localStorage.setItem('products', JSON.stringify([newCard, ...productsLS,]));
     showCards();
+
     //clear fields
     inputLink.value = inputName.value = inputDescription.value = inputPrice.value = '';
-    buttonDisable();
+    createButtonDisable();
     addELforDeleteButton();
 })
 
 
-//Delete card
+//Add Event Listener for each delete button
 export function addELforDeleteButton() {
-    const deleteButton = document.querySelectorAll('.card__delete'); //array
-    deleteButton.forEach( element => element.addEventListener('click', (e) => {
-        const productsLS = getProductLS()
-        const result = productsLS.filter((product) => product.id !== e.target.id) 
-        localStorage.setItem('products', JSON.stringify([...result]))
-        showCards();
-    }))
+    const deleteButtons = document.querySelectorAll('.card__delete'); //array
+    deleteButtons.forEach( (element) => {
+        element.addEventListener('click', (e) => {
+            //Delete card
+            const productsLS = getProductLS();
+            const result = productsLS.filter((product) => product.id !== e.target.id); 
+            localStorage.setItem('products', JSON.stringify([...result]));
+            showCards();
+        })
+    })
 }

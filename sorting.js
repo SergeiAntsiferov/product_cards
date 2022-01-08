@@ -1,11 +1,13 @@
 import { getProductLS, showCards } from './mapping.js'
+import { addELforDeleteButton } from './script.js';
 
-const select = document.getElementById('filter')
 
+//Transform price to Number
 function priceToNumber(element) {
     return parseInt(element.price.replace(/ /g, ''))
 }
 
+//Sort by price low-high
 function sortIncrease() {
     const productsLS = getProductLS()
     productsLS.sort((a, b) => {
@@ -22,6 +24,7 @@ function sortIncrease() {
     showCards();
 }
 
+//Sort by price high-low
 function sortDecrease() {
     const productsLS = getProductLS()
     productsLS.sort((a, b) => {
@@ -38,8 +41,8 @@ function sortDecrease() {
     showCards();
 }
 
+//Sort by name
 export function sortByName() {
-
     const productsLS = getProductLS()
     productsLS.sort((a, b) => {
         
@@ -56,8 +59,9 @@ export function sortByName() {
 }
 
 
+//Check select value
+const select = document.getElementById('filter')
 select.addEventListener('change', (e) => {
-
     switch (e.target.value) {
         case 'increase':
             sortIncrease();
@@ -67,7 +71,6 @@ select.addEventListener('change', (e) => {
             break; 
         case 'by-name':
             sortByName();
-            break;
         default:
             sortByName();
     }
