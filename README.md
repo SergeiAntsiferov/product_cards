@@ -2,21 +2,18 @@
 
 You can see the project
 
-by VSCode
-...
-1. Open a index.html and click to Go Live from the status bar to turn the server on/off.
-2. Right click on a index.html from Explorer Window and click on Open with Live Server.
+<h3>by VSCode</h3>
+<p>Open a index.html and click to <strong>Go Live</strong> from the status bar to turn the server on/off</p>
+<p>Right click on a index.html from Explorer Window and click on <strong>Open with Live Server</strong></p>
 
-Or
 
-by WebStorm
-...
-Right click on a index.html from Explorer Window and click on Run'index.html'.
+<h3>by WebStorm</h3>
+<p>Right click on a index.html from Explorer Window and click on <strong>Run'index.html'</strong></p>
 
-Or
 
-by one of the following links:
-...
-product-cards-git-main-sergejantsiferov.vercel.app
-product-cards-sergejantsiferov.vercel.app
-product-cards.vercel.app
+<h3>by one of the following links</h3>
+<ul>
+  <li><a href="product-cards-git-main-sergejantsiferov.vercel.app">product_cards_1</a></li>
+  <li><a href="product-cards-sergejantsiferov.vercel.app">product_cards_2</a></li>
+  <li><a href="product-cards.vercel.app">product_cards_3</a></li>
+</ul>
