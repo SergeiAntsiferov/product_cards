@@ -13,7 +13,7 @@ You can see the project
 
 <h3>by one of the following links</h3>
 <ul>
-  <li><a href="product-cards-git-main-sergejantsiferov.vercel.app">product_cards_1</a></li>
-  <li><a href="product-cards-sergejantsiferov.vercel.app">product_cards_2</a></li>
-  <li><a href="product-cards.vercel.app">product_cards_3</a></li>
+  <li>product-cards-git-main-sergejantsiferov.vercel.app</li>
+  <li>product-cards-sergejantsiferov.vercel.app</li>
+  <li>product-cards.vercel.app</li>
 </ul>
