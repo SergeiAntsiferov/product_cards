@@ -58,11 +58,11 @@ export function sortByName() {
     showCards();
 }
 
-
-//Check select value
+//Sorting
 const select = document.getElementById('filter')
-select.addEventListener('change', (e) => {
-    switch (e.target.value) {
+export function sorting() {
+    const sortValue = select.value
+    switch (sortValue) {
         case 'increase':
             sortIncrease();
             break;
@@ -74,4 +74,9 @@ select.addEventListener('change', (e) => {
         default:
             sortByName();
     }
+}
+
+//Check select value
+select.addEventListener('change', (e) => {
+    sorting(e.target.value) 
 })

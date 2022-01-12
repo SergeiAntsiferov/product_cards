@@ -1,39 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@mixin primary-font {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     // border: 1px solid red;
-    font-family: 'Source Sans Pro';
+    @include primary-font;
 }
 
 .main {
     display: flex;
     flex-flow: row wrap;
     padding: 32px;
+    background: rgba(255, 254, 251, 0.8);
 
     &__header {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding: 16px 0;
+        padding-bottom: 16px;
     }
-
+    
     &__title {
         color: #3F3F3F;
         text-align: center;
         font-size: 28px;
+        font-weight: 600;
     }
 
     &__select {
-        width: fit-content;
-        height: 32px;
-        padding: 8px 16px;
+        width: 120px;
+        height: 36px;
+        padding: 10px 28px 12px 16px;
         
+        background: #FFFEFB;
         font-size: 12px;
         color: #B4B4B4;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border: none;
         border-radius: 4px;
+        //Change default arrow
+        appearance: none;
+        background: url('./images/arrow.svg') no-repeat center;
+        background-position-x: calc(100% - 16px);
+        
     }
 } 
 
@@ -43,6 +58,7 @@
     max-width: 332px;
     height: 440px;
     padding: 24px;
+    background: #FFFEFB;
     box-shadow: 0px 20px 30px 0px #0000000a;
     
     &__wrapper {
@@ -76,6 +92,7 @@
         margin-bottom: 4px;
         padding: 10px 16px;
 
+        background: #FFFEFB;
         border: none;
         border-radius: 4px;
         outline: none;
@@ -86,6 +103,7 @@
         }
 
         &::placeholder {
+            font-weight: 400;
             font-size: 12px;
             color: #B4B4B4;
         }
@@ -101,9 +119,11 @@
     &__textarea {
         width: 284px;
         height: 108px;
+        resize: none;
         margin-bottom: 16px;
         padding: 10px 16px;
 
+        background: #FFFEFB;
         border: none;
         border-radius: 4px;
         outline: none;
@@ -114,6 +134,7 @@
         }
 
         &::placeholder {
+            font-weight: 400;
             font-size: 12px;
             color: #B4B4B4;
         }
@@ -145,10 +166,10 @@
     border: none;
     border-radius: 8px;
     transition: 0.3s;
-    font-weight: bold;
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 12px;
     color: #B4B4B4;
-
 
     &_enabled {
         background: #7BAE73;
@@ -184,13 +205,11 @@
     &:hover {
         transform: scale(1.05);
         cursor: pointer;
-        
     }
 
     &:hover .card__delete {
         display: block;
     }
-
 
 
     &__delete {
@@ -213,9 +232,7 @@
             20%, 40% {
                 transform: rotate(10deg);
             }
-            
         }
-
     }
 
     &__image {
@@ -244,12 +261,12 @@
 }
 
 
-@font-face {
-    font-family: 'Source Sans Pro';
-    font-style: normal;
-    font-weight: 400;
-    src: url('fonts/sourcesanspro.woff') format('woff');
-  }
+// @font-face {
+//     font-family: 'Source Sans Pro';
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url('fonts/sourcesanspro.woff') format('woff');
+//   }
 
 @media screen and (max-width: 768px) {
 

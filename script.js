@@ -1,4 +1,5 @@
 import { getProductLS, showCards } from './mapping.js'
+import { sorting } from './sorting.js'
 
 //Alerts
 const nameAlert = document.querySelector('.input-name-error');
@@ -79,6 +80,7 @@ createButton.addEventListener('click', (event) => {
         price: `${inputPrice.value} руб.`
     };
     localStorage.setItem('products', JSON.stringify([newCard, ...productsLS,]));
+    sorting();
     showCards();
 
     //clear fields
